@@ -1,6 +1,5 @@
 # SovereignGate
 
-![SovereignGate](./SG.png)
 
 ![SovereignGate](./thumbnail.svg)
 
