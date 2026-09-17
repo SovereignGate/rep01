@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 980" width="100%" height="100%" style="background:#0b1120; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0078d4" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dc2626" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+  </defs>
+
+  <!-- Title Header -->
+  <text x="410" y="42" text-anchor="middle" fill="#f8fafc" font-size="20" font-weight="700" letter-spacing="0.5">SovereignGate Architecture Plane</text>
+  <text x="410" y="65" text-anchor="middle" fill="#94a3b8" font-size="12">Confidential AI Gateway and Policy Orchestration Flow</text>
+
+  <!-- Step 0: Inbound Request -->
+  <rect x="230" y="90" width="360" height="48" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <text x="410" y="120" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">Inbound User / CLM Contract Prompt</text>
+
+  <!-- Arrow 0 -> 1 -->
+  <line x1="410" y1="138" x2="410" y2="168" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 1: Content Safety Shield -->
+  <rect x="150" y="174" width="520" height="74" rx="10" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="165" y="186" width="32" height="20" rx="4" fill="url(#shieldGrad)"/>
+  <text x="181" y="200" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">WAF</text>
+  <text x="208" y="202" fill="#ffffff" font-size="15" font-weight="700">Azure AI Content Safety Shield</text>
+  <text x="208" y="226" fill="#cbd5e1" font-size="12">Prompt injection detection, jailbreak deterrence, and token vault exfiltration defense</text>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="410" y1="248" x2="410" y2="280" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="410" y="270" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="500">Verified Safe Ingress</text>
+
+  <!-- Step 2: Sentinel Engine -->
+  <rect x="150" y="288" width="520" height="122" rx="10" fill="#0f172a" stroke="#0284c7" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="165" y="302" width="70" height="22" rx="4" fill="url(#blueGrad)"/>
+  <text x="200" y="317" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">AGENT 1</text>
+  <text x="246" y="319" fill="#ffffff" font-size="15" font-weight="700">Compliance Sentinel Engine</text>
+  <text x="170" y="348" fill="#e2e8f0" font-size="12.5" font-weight="500">&#8226; Microsoft Presidio Analyzer: Contextual NER for PII, rates, and party entities</text>
+  <text x="170" y="371" fill="#e2e8f0" font-size="12.5" font-weight="500">&#8226; Ephemeral Token Vault: Session-keyed memory substitution ({{ORG_1}}, {{FEE_1}})</text>
+  <text x="170" y="394" fill="#e2e8f0" font-size="12.5" font-weight="500">&#8226; Azure AI Search Policy RAG: Statutory UK DPA 2018 and EU GDPR Chapter V classification</text>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="410" y1="410" x2="410" y2="456" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="250" y="422" width="320" height="22" rx="4" fill="#0369a1"/>
+  <text x="410" y="437" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Sanitized Abstract Payload + Residency Policy Tag</text>
+
+  <!-- Step 3: Sovereign Router -->
+  <rect x="150" y="464" width="520" height="136" rx="10" fill="#0f172a" stroke="#8b5cf6" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="165" y="478" width="70" height="22" rx="4" fill="url(#purpleGrad)"/>
+  <text x="200" y="493" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">AGENT 2</text>
+  <text x="246" y="495" fill="#ffffff" font-size="15" font-weight="700">Sovereign Dispatcher</text>
+  <text x="170" y="524" fill="#cbd5e1" font-size="12.5">&#8226; <tspan fill="#a7f3d0" font-weight="600">Tier 1 (Strict Sovereign):</tspan> UK South Zero Data Retention (ZDR) Node</text>
+  <text x="170" y="547" fill="#cbd5e1" font-size="12.5">&#8226; <tspan fill="#bae6fd" font-weight="600">Tier 2 (Regional Standard):</tspan> West Europe / Sweden Central Private Endpoint</text>
+  <text x="170" y="570" fill="#cbd5e1" font-size="12.5">&#8226; <tspan fill="#fef08a" font-weight="600">Tier 3 (High-Efficiency):</tspan> Phi-4 / Mistral Small for routine non-sensitive extraction</text>
+
+  <!-- Arrow 3 -> 4 -->
+  <line x1="410" y1="600" x2="410" y2="646" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="270" y="612" width="280" height="22" rx="4" fill="#4338ca"/>
+  <text x="410" y="627" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Inference Output with Retained Tokens</text>
+
+  <!-- Step 4: Reconstructor & Audit -->
+  <rect x="150" y="654" width="520" height="122" rx="10" fill="#0f172a" stroke="#10b981" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="165" y="668" width="70" height="22" rx="4" fill="url(#greenGrad)"/>
+  <text x="200" y="683" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">AGENT 3</text>
+  <text x="246" y="685" fill="#ffffff" font-size="15" font-weight="700">Reconstructor and Audit Synthesizer</text>
+  <text x="170" y="714" fill="#e2e8f0" font-size="12.5" font-weight="500">&#8226; Ephemeral Token Inflation: Resolves {{ORG_1}} to real values locally</text>
+  <text x="170" y="737" fill="#e2e8f0" font-size="12.5" font-weight="500">&#8226; Zero Retention Wipe: Session encryption key destroyed immediately in RAM</text>
+  <text x="170" y="760" fill="#e2e8f0" font-size="12.5" font-weight="500">&#8226; Telemetry Ledger: Emits audit JSON to Azure Log Analytics / Sentinel</text>
+
+  <!-- Arrow 4 -> 5 -->
+  <line x1="410" y1="776" x2="410" y2="822" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="410" y="806" text-anchor="middle" fill="#34d399" font-size="11" font-weight="600">De-tokenized and Verified</text>
+
+  <!-- Step 5: Final Delivery -->
+  <rect x="210" y="830" width="400" height="52" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <text x="410" y="861" text-anchor="middle" fill="#f0fdf4" font-size="14" font-weight="700">Governed, Confidential Output to User</text>
+
+  <!-- Footer security guarantee -->
+  <text x="410" y="930" text-anchor="middle" fill="#64748b" font-size="11">Zero Corporate IP or PII Transmitted Outside Sovereign Boundary</text>
+</svg>

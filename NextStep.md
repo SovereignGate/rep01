@@ -18,53 +18,27 @@ To transition from heuristic regex redaction to enterprise-grade compliance gove
 ---
 
 ## 2. Technical Architecture & Component Enhancements
-[ Inbound User / API Request ]
-                                   │
-                                   ▼
-               ┌───────────────────────────────────────┐
-               │    Azure AI Content Safety Shield     │  (Jailbreak & Injection Defense)
-               └───────────────────┬───────────────────┘
-                                   ▼
-               ┌───────────────────────────────────────┐
-               │       Agent 1: Sentinel Engine        │
-               │   - Microsoft Presidio Analyzer + NER │
-               │   - Azure AI Search (GDPR/DPA RAG)    │
-               └───────────────────┬───────────────────┘
-                                   │ Sanitized Payload + Policy Tier
-                                   ▼
-               ┌───────────────────────────────────────┐
-               │      Agent 2: Sovereign Router        │
-               │   - Tier 1: UK South (High-Risk/PII)  │
-               │   - Tier 2: West Europe (Standard)    │
-               │   - Tier 3: Phi-4 / Mistral (Economy) │
-               └───────────────────┬───────────────────┘
-                                   │ Inference Output (Preserved Tokens)
-                                   ▼
-               ┌───────────────────────────────────────┐
-               │      Agent 3: Reconstructor & Audit   │
-               │   - Ephemeral Key-Vault Token Swap    │
-               │   - Zero-Data-Retention Purge         │
-               │   - Telemetry Stream to Sentinel/Logs │
-               └───────────────────┬───────────────────┘
-                                   │
-                                   ▼
-                 [ Governed Delivery to Client ]
-### A. Context-Aware Entity Shielding (Microsoft Presidio)
-* Integrates spaCy transformer pipelines for high-precision entity extraction across unstructured legal text.
-* Custom recognizers identify proprietary contract entities: payment milestones, liability limits, indemnification provisions, and counterparty entities.
 
-### B. Agentic Policy RAG (Azure AI Search)
-* Embeds compliance corpora into vector indexes.
-* The Sentinel queries the index to classify cross-border data transfer requirements before deciding which sovereign deployment region can execute the request.
+![SovereignGate Architecture](./architecture.svg)
 
-### C. Multi-Tier Model Routing
-* **Tier 1 (Sovereign Strict):** Data bound by UK DPA / GDPR routes to private UK South or West Europe deployments under zero-data-retention agreements.
-* **Tier 2 (Routine Analysis):** Non-sensitive clause classification routes to high-efficiency models (e.g., Phi-4) to cut inference cost and latency.
-* **Tier 3 (Public Query):** Completely scrubbed non-confidential text routes to public frontier models.
+### Pipeline Stages & Operational Responsibilities
 
-### D. Ephemeral In-Memory Envelope Encryption
-* Eliminates plaintext token storage in host memory.
-* Encryption keys exist only in the execution thread and are purged immediately upon reconstruction, preventing memory dump inspection vulnerabilities.
+| Stage | Component | Core Responsibility |
+| :--- | :--- | :--- |
+| **Ingress Defense** | **Azure AI Content Safety** | Intercepts adversarial prompts, jailbreaks, and extraction attacks before token processing. |
+| **Stage 1** | **Compliance Sentinel** | Presidio-based PII identification, local token-vault substitution, and Azure AI Search policy classification. |
+| **Stage 2** | **Sovereign Dispatcher** | Policy-driven model routing between Tier 1 (UK South ZDR), Tier 2 (West Europe), and Tier 3 (Local/Phi-4). |
+| **Stage 3** | **Reconstructor & Audit** | In-memory token re-inflation, zero-retention memory purge, and real-time telemetry emission to Sentinel. |
+
+### Detailed Component Deep Dive
+
+* **Context-Aware Entity Shielding (Microsoft Presidio):** Integrates spaCy transformer pipelines for high-precision entity extraction across unstructured legal text. Custom recognizers identify proprietary contract entities: payment milestones, liability limits, indemnification provisions, and counterparty entities.
+* **Agentic Policy RAG (Azure AI Search):** Embeds compliance corpora into vector indexes. The Sentinel queries the index to classify cross-border data transfer requirements before deciding which sovereign deployment region can execute the request.
+* **Multi-Tier Model Routing:** 
+  * *Tier 1 (Sovereign Strict):* Data bound by UK DPA / GDPR routes to private UK South or West Europe deployments under zero-data-retention agreements.
+  * *Tier 2 (Routine Analysis):* Non-sensitive clause classification routes to high-efficiency models (such as Phi-4) to cut inference cost and latency.
+  * *Tier 3 (Public Query):* Completely scrubbed non-confidential text routes to public frontier models.
+* **Ephemeral In-Memory Envelope Encryption:** Eliminates plaintext token storage in host memory. Encryption keys exist only in the execution thread and are purged immediately upon reconstruction, preventing memory dump inspection vulnerabilities.
 
 ---
 
