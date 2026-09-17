@@ -1,5 +1,9 @@
 # SovereignGate
 
+![SovereignGate](./SG.png)
+
+![SovereignGate](./thumbnail.svg)
+
 > **Confidential Multi-Agent AI Gateway and Policy Orchestrator for Regulated Enterprise Workflows**  
 > *Built natively on Azure AI Foundry for the Microsoft Agentathon (Track 3: Architect)*
 
